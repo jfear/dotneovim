@@ -1,0 +1,24 @@
+" python3 plugins
+call remote#host#RegisterPlugin('python3', '/home/jfear/.config/nvim/plugged/nvim-ipy/rplugin/python3/nvim_ipy.py', [
+      \ {'sync': 0, 'name': 'IPyComplete', 'type': 'function', 'opts': {}},
+      \ {'sync': 1, 'name': 'IPyConnect', 'type': 'function', 'opts': {}},
+      \ {'sync': 0, 'name': 'IPyInterrupt', 'type': 'function', 'opts': {}},
+      \ {'sync': 0, 'name': 'IPyObjInfo', 'type': 'function', 'opts': {}},
+      \ {'sync': 1, 'name': 'IPyOmniFunc', 'type': 'function', 'opts': {}},
+      \ {'sync': 0, 'name': 'IPyRun', 'type': 'function', 'opts': {}},
+      \ {'sync': 0, 'name': 'IPyTerminate', 'type': 'function', 'opts': {}},
+     \ ])
+call remote#host#RegisterPlugin('python3', '/home/jfear/.config/nvim/plugged/vim-markdown-composer/rplugin/python3/markdown_composer.py', [
+      \ {'sync': 1, 'name': 'FileType', 'type': 'autocmd', 'opts': {'pattern': 'markdown'}},
+      \ {'sync': 0, 'name': 'BufEnter', 'type': 'autocmd', 'opts': {'pattern': '*.md,*.mkd,*.markdown'}},
+      \ {'sync': 0, 'name': 'ComposerOpen', 'type': 'command', 'opts': {}},
+      \ {'sync': 0, 'name': 'ComposerPort', 'type': 'command', 'opts': {}},
+      \ {'sync': 0, 'name': 'ComposerStart', 'type': 'command', 'opts': {}},
+      \ {'sync': 0, 'name': 'CursorHold,CursorHoldI,CursorMoved,CursorMovedI', 'type': 'autocmd', 'opts': {'pattern': '*.md,*.mkd,*.markdown'}},
+      \ {'sync': 1, 'name': 'ComposerUpdate', 'type': 'command', 'opts': {}},
+     \ ])
+
+
+" python plugins
+
+

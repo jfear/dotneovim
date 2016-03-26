@@ -16,6 +16,7 @@ endfunction
 
 call plug#begin()
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/syntastic'
 Plug 'junegunn/seoul256.vim'
 Plug 'bfredl/nvim-ipy'
 Plug 'jalvesaq/Nvim-R'
@@ -24,7 +25,9 @@ Plug 'chrisbra/csv.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-markdown'
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+Plug 'majutsushi/tagbar'
 
 " plugin on GitHub repo
 "Plug 'fholgado/minibufexpl.vim'
@@ -32,14 +35,11 @@ Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 "Plug 'godlygeek/tabular'
 "Plug 'MarcWeber/vim-addon-mw-utils'
 "Plug 'nvie/vim-rst-tables'
-"Plug 'scrooloose/syntastic'
 "Plug 'tomtom/tlib_vim'
 "Plug 'vim-pandoc/vim-pandoc'
 "Plug 'vim-scripts/bash-support.vim'
 "Plug 'vim-scripts/perl-support.vim'
 "Plug 'ynkdir/vim-diff'
-"Plug 'junegunn/goyo.vim'
-"Plug 'majutsushi/tagbar'
 "Plug 'bling/vim-airline'
 "Plug 'kien/ctrlp.vim'
 "Plug 'EricGebhart/SAS-Vim'
@@ -215,6 +215,8 @@ au BufNewFile,BufRead *.snake set syntax=snakemake
 au BufNewFile,BufRead *.snake set number
 au BufNewFile,BufRead *.snake set foldmethod=indent
 
+au BufNewFIle,BufRead *.pymd set ft=markdown.python
+
 " -----------------------------------------------------------------------
 " SAS Settings 
 " -----------------------------------------------------------------------
@@ -242,10 +244,10 @@ au BufNewFile,BufRead *.snake set foldmethod=indent
 "-----------------------------------------------------------------------------
 " nvim-ipy
 "-----------------------------------------------------------------------------
-autocmd FileType python let g:nvim_ipy_perform_mappings = 0
-autocmd FileType python map  <Plug>(IPy-Run)
-autocmd FileType python imap  <ESC><Plug>(IPy-Run)
-autocmd FileType python map ,/ <Plug>(IPy-WordObjInfo)
+autocmd FileType markdown.python,python let g:nvim_ipy_perform_mappings = 0
+autocmd FileType markdown.python,python map  <Plug>(IPy-Run)
+autocmd FileType markdown.python,python imap  <ESC><Plug>(IPy-Run)
+autocmd FileType markdown.python,python map ,/ <Plug>(IPy-WordObjInfo)
 
 "-----------------------------------------------------------------------------
 " Nvim-R
@@ -264,20 +266,40 @@ autocmd FileType r,rmd,rnw nmap <Space> <Plug>RDSendLine
 let g:miniBufExplorerMoreThanOne=2
 
 "-----------------------------------------------------------------------------
-" vim-rst-tables Settings
+" vim-rst-tables 
 "-----------------------------------------------------------------------------
 noremap <silent> ;;c : call ReformatTable()<CR>
 noremap <silent> ;;f : call ReflowTable()<CR>
 
 "-----------------------------------------------------------------------------
-" Syntastic Settings
+" Syntastic 
 "-----------------------------------------------------------------------------
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
 autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501,F401,W391'
 
 "-----------------------------------------------------------------------------
-" tagbar Settings
+" tagbar 
 "-----------------------------------------------------------------------------
 nmap ,t :TagbarToggle<CR>
+
+"-----------------------------------------------------------------------------
+" vim-markdown 
+"-----------------------------------------------------------------------------
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'r']
+
+"-----------------------------------------------------------------------------
+" jedi-vim
+"-----------------------------------------------------------------------------
+let g:jedi#popup_on_dot=0
 
 "=============================================================================
 "                                Functions                                      
