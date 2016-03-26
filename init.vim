@@ -159,7 +159,7 @@ noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<
 " -----------------------------------------------------------------------
 
 " Change to the current directory of the current file
-autocmd BufEnter * lcd %:p:h
+autocmd BufEnter * if expand('%p') !~ '://' | :lchdir %:p:h | endif
 
 " Comment code
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
@@ -257,6 +257,24 @@ else
 endif
 autocmd FileType r,rmd,rnw vmap <Space> <Plug>RDSendSelection
 autocmd FileType r,rmd,rnw nmap <Space> <Plug>RDSendLine
+autocmd FileType r,rmd,rnw set foldmethod=syntax
+
+
+"-----------------------------------------------------------------------------
+" Nvim-R (knitrBootstrap)
+"-----------------------------------------------------------------------------
+function! RMakeHTML_2(t)
+    update
+    let rmddir = expand("%:p:h")
+    let rcmd = 'nvim.interlace.rmd("' . expand("%:t") . '", outform = "' . a:t .'", rmddir = "' . rmddir . '"'
+    let rcmd .= ", view = FALSE"
+    let rcmd = rcmd . ', envir = ' . g:R_rmd_environment . ')'
+    call g:SendCmdToR(rcmd)
+endfunction
+
+"bind RMakeHTML_2 to leader kk
+nnoremap <silent> <Leader>kk :call RMakeHTML_2("knitrBootstrap::bootstrap_document")<CR>
+
 
 "-----------------------------------------------------------------------------
 " Minibufexplorer 
@@ -282,3 +300,6 @@ nmap ,t :TagbarToggle<CR>
 "=============================================================================
 "                                Functions                                      
 "=============================================================================
+function! RunNoteDown()
+
+endfunction
