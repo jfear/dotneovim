@@ -246,7 +246,7 @@ au BufNewFIle,BufRead *.pymd set ft=markdown.python
 "-----------------------------------------------------------------------------
 autocmd FileType markdown.python,python let g:nvim_ipy_perform_mappings = 0
 autocmd FileType markdown.python,python map  <Plug>(IPy-Run)
-autocmd FileType markdown.python,python imap  <ESC><Plug>(IPy-Run)
+"autocmd FileType markdown.python,python imap  <ESC><Plug>(IPy-Run)
 autocmd FileType markdown.python,python map ,/ <Plug>(IPy-WordObjInfo)
 
 "-----------------------------------------------------------------------------
@@ -276,6 +276,7 @@ endfunction
 
 "bind RMakeHTML_2 to leader kk
 nnoremap <silent> <Leader>kk :call RMakeHTML_2("knitrBootstrap::bootstrap_document")<CR>
+nnoremap <silent> <Leader>km :!mv %:r.html ../output/<CR>
 
 
 "-----------------------------------------------------------------------------
