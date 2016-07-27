@@ -28,11 +28,12 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-markdown'
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 Plug 'majutsushi/tagbar'
+Plug 'junegunn/goyo.vim'
+Plug 'godlygeek/tabular'
 
 " plugin on GitHub repo
 "Plug 'fholgado/minibufexpl.vim'
 "Plug 'garbas/vim-snipmate'
-"Plug 'godlygeek/tabular'
 "Plug 'MarcWeber/vim-addon-mw-utils'
 "Plug 'nvie/vim-rst-tables'
 "Plug 'tomtom/tlib_vim'
@@ -245,7 +246,7 @@ au BufNewFIle,BufRead *.pymd set ft=markdown.python
 " nvim-ipy
 "-----------------------------------------------------------------------------
 autocmd FileType markdown.python,python let g:nvim_ipy_perform_mappings = 0
-autocmd FileType markdown.python,python map  <Plug>(IPy-Run)
+autocmd FileType markdown.python,python map ,r <Plug>(IPy-Run)
 "autocmd FileType markdown.python,python imap  <ESC><Plug>(IPy-Run)
 autocmd FileType markdown.python,python map ,/ <Plug>(IPy-WordObjInfo)
 
@@ -313,7 +314,14 @@ nmap ,t :TagbarToggle<CR>
 " vim-markdown 
 "-----------------------------------------------------------------------------
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost README set filetype=markdown
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'r']
+
+"-----------------------------------------------------------------------------
+" vim-markdown-composer
+"-----------------------------------------------------------------------------
+let g:markdown_composer_autostart=0
+
 
 "-----------------------------------------------------------------------------
 " jedi-vim
