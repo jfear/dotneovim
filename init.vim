@@ -30,6 +30,8 @@ Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/goyo.vim'
 Plug 'godlygeek/tabular'
+Plug 'tmhedberg/SimpylFold'
+Plug 'vimwiki/vimwiki'
 
 " plugin on GitHub repo
 "Plug 'fholgado/minibufexpl.vim'
@@ -140,7 +142,7 @@ nmap ,ss :setlocal spell! spelllang=en<CR>
 nmap <silent> ,w :set invwrap<CR>:set wrap?<CR>
 
 " Add shortcut for setting folding
-noremap <silent> ,fi :set foldmethod=indent<CR>
+"noremap <silent> ,fi :set foldmethod=indent<CR>
 
 " Add blank line below/above 
 nnoremap + maO<esc>`a
@@ -204,17 +206,17 @@ au BufRead,BufNewfile *.tsv set noexpandtab
 au BufRead,BufNewfile *.tsv set nonumber 
 
 " Python
-au BufRead,BufNewfile *.py set foldmethod=indent 
+"au BufRead,BufNewfile *.py set foldmethod=indent 
 au BufRead,BufNewFile *.py set syntax=python
 
 " Snakemake
 au BufNewFile,BufRead Snakefile set syntax=snakemake
-au BufNewFile,BufRead Snakefile set foldmethod=indent
+"au BufNewFile,BufRead Snakefile set foldmethod=indent
 au BufNewFile,BufRead *.rules set syntax=snakemake
 au BufNewFile,BufRead *.snakefile set syntax=snakemake
 au BufNewFile,BufRead *.snake set syntax=snakemake
 au BufNewFile,BufRead *.snake set number
-au BufNewFile,BufRead *.snake set foldmethod=indent
+"au BufNewFile,BufRead *.snake set foldmethod=indent
 
 au BufNewFIle,BufRead *.pymd set ft=markdown.python
 
@@ -328,9 +330,36 @@ let g:markdown_composer_autostart=0
 "-----------------------------------------------------------------------------
 let g:jedi#popup_on_dot=0
 
+"-----------------------------------------------------------------------------
+" SimplyFold
+"-----------------------------------------------------------------------------
+autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
+autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_import = 0
+
+"-----------------------------------------------------------------------------
+" Vimwiki
+"-----------------------------------------------------------------------------
+let wiki_1 = {}
+let wiki_1.path = '~/Dropbox/wiki/research'
+let wiki_1.path_html = '~/Dropbox/wiki/public_html'
+let wiki_1.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
+let wiki_1.ext = '.md'
+let wiki_1.syntax = 'markdown'
+
+let g:vimwiki_list = [wiki_1]
+
 "=============================================================================
 "                                Functions                                      
 "=============================================================================
 function! RunNoteDown()
-
 endfunction
+
+function! TrimSpaces()
+    let l:save = winsaveview()
+    %s/\s\+$//e
+    w
+    call winsaveview()
+endfun
+command! TrimSpaces call TrimSpaces()
