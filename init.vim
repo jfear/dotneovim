@@ -16,6 +16,7 @@ endfunction
 
 call plug#begin()
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/syntastic'
 Plug 'junegunn/seoul256.vim'
 Plug 'bfredl/nvim-ipy'
 Plug 'jalvesaq/Nvim-R'
@@ -24,22 +25,24 @@ Plug 'chrisbra/csv.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-markdown'
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 Plug 'majutsushi/tagbar'
+Plug 'junegunn/goyo.vim'
+Plug 'godlygeek/tabular'
+Plug 'tmhedberg/SimpylFold'
+Plug 'vimwiki/vimwiki'
 
 " plugin on GitHub repo
 "Plug 'fholgado/minibufexpl.vim'
 "Plug 'garbas/vim-snipmate'
-"Plug 'godlygeek/tabular'
 "Plug 'MarcWeber/vim-addon-mw-utils'
 "Plug 'nvie/vim-rst-tables'
-"Plug 'scrooloose/syntastic'
 "Plug 'tomtom/tlib_vim'
 "Plug 'vim-pandoc/vim-pandoc'
 "Plug 'vim-scripts/bash-support.vim'
 "Plug 'vim-scripts/perl-support.vim'
 "Plug 'ynkdir/vim-diff'
-"Plug 'junegunn/goyo.vim'
 "Plug 'bling/vim-airline'
 "Plug 'kien/ctrlp.vim'
 "Plug 'EricGebhart/SAS-Vim'
@@ -139,7 +142,7 @@ nmap ,ss :setlocal spell! spelllang=en<CR>
 nmap <silent> ,w :set invwrap<CR>:set wrap?<CR>
 
 " Add shortcut for setting folding
-noremap <silent> ,fi :set foldmethod=indent<CR>
+"noremap <silent> ,fi :set foldmethod=indent<CR>
 
 " Add blank line below/above 
 nnoremap + maO<esc>`a
@@ -159,7 +162,7 @@ noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<
 " -----------------------------------------------------------------------
 
 " Change to the current directory of the current file
-autocmd BufEnter * lcd %:p:h
+autocmd BufEnter * if expand('%p') !~ '://' | :lchdir %:p:h | endif
 
 " Comment code
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
@@ -203,18 +206,20 @@ au BufRead,BufNewfile *.tsv set noexpandtab
 au BufRead,BufNewfile *.tsv set nonumber 
 
 " Python
-au BufRead,BufNewfile *.py set foldmethod=indent 
+"au BufRead,BufNewfile *.py set foldmethod=indent 
 au BufRead,BufNewFile *.py set syntax=python
 
 " Snakemake
 au BufNewFile,BufRead Snakefile set syntax=snakemake
-au BufNewFile,BufRead Snakefile set foldmethod=indent
+"au BufNewFile,BufRead Snakefile set foldmethod=indent
 au BufNewFile,BufRead *.rules set syntax=snakemake
 au BufNewFile,BufRead *.rules set foldmethod=indent
 au BufNewFile,BufRead *.workflow set syntax=snakemake
 au BufNewFile,BufRead *.workflow set foldmethod=indent
 au BufNewFile,BufRead *.snake set syntax=snakemake
 au BufNewFile,BufRead *.snake set foldmethod=indent
+au BufNewFile,BufRead *.snake set number
+au BufNewFIle,BufRead *.pymd set ft=markdown.python
 
 " -----------------------------------------------------------------------
 " SAS Settings 
@@ -243,10 +248,10 @@ au BufNewFile,BufRead *.snake set foldmethod=indent
 "-----------------------------------------------------------------------------
 " nvim-ipy
 "-----------------------------------------------------------------------------
-autocmd FileType python let g:nvim_ipy_perform_mappings = 0
-autocmd FileType python map ,r <Plug>(IPy-Run)
-"autocmd FileType python imap  <ESC><Plug>(IPy-Run)
-autocmd FileType python map ,/ <Plug>(IPy-WordObjInfo)
+autocmd FileType markdown.python,python let g:nvim_ipy_perform_mappings = 0
+autocmd FileType markdown.python,python map ,r <Plug>(IPy-Run)
+"autocmd FileType markdown.python,python imap  <ESC><Plug>(IPy-Run)
+autocmd FileType markdown.python,python map ,/ <Plug>(IPy-WordObjInfo)
 
 "-----------------------------------------------------------------------------
 " Nvim-R
@@ -258,6 +263,25 @@ else
 endif
 autocmd FileType r,rmd,rnw vmap <Space> <Plug>RDSendSelection
 autocmd FileType r,rmd,rnw nmap <Space> <Plug>RDSendLine
+autocmd FileType r,rmd,rnw set foldmethod=syntax
+
+
+"-----------------------------------------------------------------------------
+" Nvim-R (knitrBootstrap)
+"-----------------------------------------------------------------------------
+function! RMakeHTML_2(t)
+    update
+    let rmddir = expand("%:p:h")
+    let rcmd = 'nvim.interlace.rmd("' . expand("%:t") . '", outform = "' . a:t .'", rmddir = "' . rmddir . '"'
+    let rcmd .= ", view = FALSE"
+    let rcmd = rcmd . ', envir = ' . g:R_rmd_environment . ')'
+    call g:SendCmdToR(rcmd)
+endfunction
+
+"bind RMakeHTML_2 to leader kk
+nnoremap <silent> <Leader>kk :call RMakeHTML_2("knitrBootstrap::bootstrap_document")<CR>
+nnoremap <silent> <Leader>km :!mv %:r.html ../output/<CR>
+
 
 "-----------------------------------------------------------------------------
 " Minibufexplorer 
@@ -265,26 +289,80 @@ autocmd FileType r,rmd,rnw nmap <Space> <Plug>RDSendLine
 let g:miniBufExplorerMoreThanOne=2
 
 "-----------------------------------------------------------------------------
-" vim-rst-tables Settings
+" vim-rst-tables 
 "-----------------------------------------------------------------------------
 noremap <silent> ;;c : call ReformatTable()<CR>
 noremap <silent> ;;f : call ReflowTable()<CR>
 
 "-----------------------------------------------------------------------------
-" Syntastic Settings
+" Syntastic 
 "-----------------------------------------------------------------------------
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
 autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501,F401,W391'
 
 "-----------------------------------------------------------------------------
-" tagbar Settings
+" tagbar 
 "-----------------------------------------------------------------------------
 nmap ,t :TagbarToggle<CR>
+
 
 "-----------------------------------------------------------------------------
 " jedi-vim Settings
 "-----------------------------------------------------------------------------
 let g:jedi#popup_on_dot = 0
 
+
+" vim-markdown 
+"-----------------------------------------------------------------------------
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost README set filetype=markdown
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'r']
+
+
+"-----------------------------------------------------------------------------
+" vim-markdown-composer
+"-----------------------------------------------------------------------------
+let g:markdown_composer_autostart=0
+
+
+"-----------------------------------------------------------------------------
+" SimplyFold
+"-----------------------------------------------------------------------------
+autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
+autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_import = 0
+
+
+"-----------------------------------------------------------------------------
+" Vimwiki
+"-----------------------------------------------------------------------------
+let wiki_1 = {}
+let wiki_1.path = '~/Dropbox/wiki/research'
+let wiki_1.path_html = '~/Dropbox/wiki/public_html'
+let wiki_1.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
+let wiki_1.ext = '.md'
+let wiki_1.syntax = 'markdown'
+let g:vimwiki_list = [wiki_1]
+
 "=============================================================================
 "                                Functions                                      
 "=============================================================================
+function! RunNoteDown()
+endfunction
+
+function! TrimSpaces()
+    let l:save = winsaveview()
+    %s/\s\+$//e
+    w
+    call winsaveview()
+endfun
+command! TrimSpaces call TrimSpaces()
