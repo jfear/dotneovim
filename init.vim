@@ -25,6 +25,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+Plug 'majutsushi/tagbar'
 
 " plugin on GitHub repo
 "Plug 'fholgado/minibufexpl.vim'
@@ -39,7 +40,6 @@ Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 "Plug 'vim-scripts/perl-support.vim'
 "Plug 'ynkdir/vim-diff'
 "Plug 'junegunn/goyo.vim'
-"Plug 'majutsushi/tagbar'
 "Plug 'bling/vim-airline'
 "Plug 'kien/ctrlp.vim'
 "Plug 'EricGebhart/SAS-Vim'
@@ -210,9 +210,10 @@ au BufRead,BufNewFile *.py set syntax=python
 au BufNewFile,BufRead Snakefile set syntax=snakemake
 au BufNewFile,BufRead Snakefile set foldmethod=indent
 au BufNewFile,BufRead *.rules set syntax=snakemake
-au BufNewFile,BufRead *.snakefile set syntax=snakemake
+au BufNewFile,BufRead *.rules set foldmethod=indent
+au BufNewFile,BufRead *.workflow set syntax=snakemake
+au BufNewFile,BufRead *.workflow set foldmethod=indent
 au BufNewFile,BufRead *.snake set syntax=snakemake
-au BufNewFile,BufRead *.snake set number
 au BufNewFile,BufRead *.snake set foldmethod=indent
 
 " -----------------------------------------------------------------------
@@ -243,8 +244,8 @@ au BufNewFile,BufRead *.snake set foldmethod=indent
 " nvim-ipy
 "-----------------------------------------------------------------------------
 autocmd FileType python let g:nvim_ipy_perform_mappings = 0
-autocmd FileType python map  <Plug>(IPy-Run)
-autocmd FileType python imap  <ESC><Plug>(IPy-Run)
+autocmd FileType python map ,r <Plug>(IPy-Run)
+"autocmd FileType python imap  <ESC><Plug>(IPy-Run)
 autocmd FileType python map ,/ <Plug>(IPy-WordObjInfo)
 
 "-----------------------------------------------------------------------------
@@ -278,6 +279,11 @@ autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501,F401,W
 " tagbar Settings
 "-----------------------------------------------------------------------------
 nmap ,t :TagbarToggle<CR>
+
+"-----------------------------------------------------------------------------
+" jedi-vim Settings
+"-----------------------------------------------------------------------------
+let g:jedi#popup_on_dot = 0
 
 "=============================================================================
 "                                Functions                                      
