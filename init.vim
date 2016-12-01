@@ -32,6 +32,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'godlygeek/tabular'
 Plug 'tmhedberg/SimpylFold'
 Plug 'vimwiki/vimwiki'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'ccwang002/vim-snakemake'
 
 " plugin on GitHub repo
 "Plug 'fholgado/minibufexpl.vim'
@@ -135,7 +137,7 @@ map <F1> <Esc>
 imap jj <Esc>
 tnoremap <Esc> <C-\><C-n>
 
-" Add shortcut for spelling
+" Add shortcut for spellinfoldmethod=indentg
 nmap ,ss :setlocal spell! spelllang=en<CR>
 
 " Add shortcut for wrapping
@@ -144,7 +146,7 @@ nmap <silent> ,w :set invwrap<CR>:set wrap?<CR>
 " Add shortcut for setting folding
 "noremap <silent> ,fi :set foldmethod=indent<CR>
 
-" Add blank line below/above 
+" Add blank line below/above
 nnoremap + maO<esc>`a
 noremap - mao<esc>`a
 
@@ -158,7 +160,7 @@ noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<C
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
 " -----------------------------------------------------------------------
-" Buffer Settings 
+" Buffer Settings
 " -----------------------------------------------------------------------
 
 " Change to the current directory of the current file
@@ -171,58 +173,58 @@ autocmd FileType tex              let b:comment_leader = '% '
 autocmd FileType vim              let b:comment_leader = '" '
 
 " Text
-au BufRead,BufNewfile *.txt set lbr 
+au BufRead,BufNewfile *.txt set lbr
 au BufRead,BufNewfile *.txt set tw=80
 au BufRead,BufNewfile *.txt set spell spelllang=en
-au BufRead,BufNewfile *.txt set nonumber 
+au BufRead,BufNewfile *.txt set nonumber
 
 " Latex
 au BufRead,BufNewfile *.tex set nonumber
-au BufRead,BufNewfile *.tex set lbr 
+au BufRead,BufNewfile *.tex set lbr
 au BufRead,BufNewfile *.tex set tw=80
 au BufRead,BufNewfile *.tex set spell spelllang=en
 
 " Markdown
-au BufRead,BufNewfile *.mkd set lbr 
+au BufRead,BufNewfile *.mkd set lbr
 au BufRead,BufNewfile *.mkd set tw=80
 au BufRead,BufNewfile *.mkd set spell spelllang=en
-au BufRead,BufNewfile *.mkd set nonumber 
-au BufRead,BufNewfile *.mkd set syntax=markdown 
+au BufRead,BufNewfile *.mkd set nonumber
+au BufRead,BufNewfile *.mkd set syntax=markdown
 
 " BASH
-au BufRead,BufNewfile *.sh set number 
-au BufRead,BufNewfile *.qsub set number 
+au BufRead,BufNewfile *.sh set number
+au BufRead,BufNewfile *.qsub set number
 
 " IGV Genome Files
 au BufReadCmd *.genome call zip#Browse(expand(""))
 
 " CSV
-au BufRead,BufNewfile *.csv set ft=csv 
-au BufRead,BufNewfile *.csv set nonumber 
+au BufRead,BufNewfile *.csv set ft=csv
+au BufRead,BufNewfile *.csv set nonumber
 
 " TSV
-au BufRead,BufNewfile *.tsv set ft=csv 
-au BufRead,BufNewfile *.tsv set noexpandtab 
-au BufRead,BufNewfile *.tsv set nonumber 
+au BufRead,BufNewfile *.tsv set ft=csv
+au BufRead,BufNewfile *.tsv set noexpandtab
+au BufRead,BufNewfile *.tsv set nonumber
 
 " Python
-"au BufRead,BufNewfile *.py set foldmethod=indent 
+au BufRead,BufNewfile *.py set ft=python
 au BufRead,BufNewFile *.py set syntax=python
+au BufRead,BufNewfile *.py set foldmethod=indent
+au BufRead,BufNewfile *.py set number
 
 " Snakemake
 au BufNewFile,BufRead Snakefile set syntax=snakemake
-"au BufNewFile,BufRead Snakefile set foldmethod=indent
-au BufNewFile,BufRead *.rules set syntax=snakemake
-au BufNewFile,BufRead *.rules set foldmethod=indent
-au BufNewFile,BufRead *.workflow set syntax=snakemake
-au BufNewFile,BufRead *.workflow set foldmethod=indent
+au BufNewFile,BufRead Snakefile set foldmethod=indent
+au BufNewFile,BufRead Snakefile set number
+au BufNewFile,BufRead *.snake set ft=snakemake.python
 au BufNewFile,BufRead *.snake set syntax=snakemake
 au BufNewFile,BufRead *.snake set foldmethod=indent
 au BufNewFile,BufRead *.snake set number
 au BufNewFIle,BufRead *.pymd set ft=markdown.python
 
 " -----------------------------------------------------------------------
-" SAS Settings 
+" SAS Settings
 " -----------------------------------------------------------------------
 
 " Allows copying to X11 clipboard
@@ -242,7 +244,7 @@ au BufNewFIle,BufRead *.pymd set ft=markdown.python
 :ca pv Pv
 
 "=============================================================================
-"                                Plugins                                      
+"                                Plugins
 "=============================================================================
 
 "-----------------------------------------------------------------------------
@@ -284,18 +286,18 @@ nnoremap <silent> <Leader>km :!mv %:r.html ../output/<CR>
 
 
 "-----------------------------------------------------------------------------
-" Minibufexplorer 
+" Minibufexplorer
 "-----------------------------------------------------------------------------
 let g:miniBufExplorerMoreThanOne=2
 
 "-----------------------------------------------------------------------------
-" vim-rst-tables 
+" vim-rst-tables
 "-----------------------------------------------------------------------------
 noremap <silent> ;;c : call ReformatTable()<CR>
 noremap <silent> ;;f : call ReflowTable()<CR>
 
 "-----------------------------------------------------------------------------
-" Syntastic 
+" Syntastic
 "-----------------------------------------------------------------------------
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
@@ -309,7 +311,7 @@ noremap <silent> ;;f : call ReflowTable()<CR>
 autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501,F401,W391'
 
 "-----------------------------------------------------------------------------
-" tagbar 
+" tagbar
 "-----------------------------------------------------------------------------
 nmap ,t :TagbarToggle<CR>
 
@@ -320,7 +322,7 @@ nmap ,t :TagbarToggle<CR>
 let g:jedi#popup_on_dot = 0
 
 
-" vim-markdown 
+" vim-markdown
 "-----------------------------------------------------------------------------
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost README set filetype=markdown
@@ -354,7 +356,7 @@ let wiki_1.syntax = 'markdown'
 let g:vimwiki_list = [wiki_1]
 
 "=============================================================================
-"                                Functions                                      
+"                                Functions
 "=============================================================================
 function! RunNoteDown()
 endfunction
