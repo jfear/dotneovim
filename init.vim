@@ -214,17 +214,28 @@ au BufRead,BufNewfile *.py set foldmethod=indent
 au BufRead,BufNewfile *.py set number
 au BufRead,BufNewfile *.py let g:strip_whitespace_on_save = 1
 
+au BufNewFIle,BufRead *.pymd set ft=markdown.python
+
 " Snakemake
 au BufNewFile,BufRead Snakefile set syntax=snakemake
 au BufNewFile,BufRead Snakefile set foldmethod=indent
 au BufNewFile,BufRead Snakefile set number
 au BufRead,BufNewfile Snakefile let g:strip_whitespace_on_save = 1
+
 au BufNewFile,BufRead *.snake set ft=snakemake.python
 au BufNewFile,BufRead *.snake set syntax=snakemake
 au BufNewFile,BufRead *.snake set foldmethod=indent
 au BufNewFile,BufRead *.snake set number
 au BufRead,BufNewfile *.snake let g:strip_whitespace_on_save = 1
-au BufNewFIle,BufRead *.pymd set ft=markdown.python
+
+" YAML
+au BufNewFile,BufRead *.yaml set syntax=yaml
+au BufNewFile,BufRead *.yaml set foldmethod=indent
+au BufNewFile,BufRead *.yaml set shiftwidth=2
+
+au BufNewFile,BufRead *.yml set syntax=yaml
+au BufNewFile,BufRead *.yml set foldmethod=indent
+au BufNewFile,BufRead *.yml set shiftwidth=2
 
 " -----------------------------------------------------------------------
 " SAS Settings
