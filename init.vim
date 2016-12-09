@@ -16,7 +16,7 @@ endfunction
 
 call plug#begin()
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 Plug 'junegunn/seoul256.vim'
 Plug 'bfredl/nvim-ipy'
 Plug 'jalvesaq/Nvim-R'
@@ -212,15 +212,18 @@ au BufRead,BufNewfile *.py set ft=python
 au BufRead,BufNewFile *.py set syntax=python
 au BufRead,BufNewfile *.py set foldmethod=indent
 au BufRead,BufNewfile *.py set number
+au BufRead,BufNewfile *.py let g:strip_whitespace_on_save = 1
 
 " Snakemake
 au BufNewFile,BufRead Snakefile set syntax=snakemake
 au BufNewFile,BufRead Snakefile set foldmethod=indent
 au BufNewFile,BufRead Snakefile set number
+au BufRead,BufNewfile Snakefile let g:strip_whitespace_on_save = 1
 au BufNewFile,BufRead *.snake set ft=snakemake.python
 au BufNewFile,BufRead *.snake set syntax=snakemake
 au BufNewFile,BufRead *.snake set foldmethod=indent
 au BufNewFile,BufRead *.snake set number
+au BufRead,BufNewfile *.snake let g:strip_whitespace_on_save = 1
 au BufNewFIle,BufRead *.pymd set ft=markdown.python
 
 " -----------------------------------------------------------------------
@@ -306,7 +309,8 @@ noremap <silent> ;;f : call ReflowTable()<CR>
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 0
 
 autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501,F401,W391'
 
@@ -354,6 +358,10 @@ let wiki_1.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
 let wiki_1.ext = '.md'
 let wiki_1.syntax = 'markdown'
 let g:vimwiki_list = [wiki_1]
+
+"-----------------------------------------------------------------------------
+" Better White Space
+"-----------------------------------------------------------------------------
 
 "=============================================================================
 "                                Functions
