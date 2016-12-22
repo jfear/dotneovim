@@ -34,6 +34,7 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'vimwiki/vimwiki'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ccwang002/vim-snakemake'
+Plug 'ap/vim-buftabline'
 
 " plugin on GitHub repo
 "Plug 'fholgado/minibufexpl.vim'
@@ -373,6 +374,11 @@ let g:vimwiki_list = [wiki_1]
 "-----------------------------------------------------------------------------
 " Better White Space
 "-----------------------------------------------------------------------------
+
+"-----------------------------------------------------------------------------
+" Bufftabline
+"-----------------------------------------------------------------------------
+let g:buftabline_numbers = 1
 
 "=============================================================================
 "                                Functions
