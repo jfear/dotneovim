@@ -16,7 +16,7 @@ endfunction
 
 call plug#begin()
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-"Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 Plug 'junegunn/seoul256.vim'
 Plug 'bfredl/nvim-ipy'
 Plug 'jalvesaq/Nvim-R'
@@ -93,6 +93,8 @@ set smartcase
 set incsearch
 set showmatch
 set clipboard+=unnamedplus
+set modeline
+set modelines=1
 
 command Bd bp\|bd \#            " This will close a buffer and not close split
 
@@ -314,17 +316,17 @@ noremap <silent> ;;f : call ReflowTable()<CR>
 "-----------------------------------------------------------------------------
 " Syntastic
 "-----------------------------------------------------------------------------
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 "
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_check_on_open = 0
 
-autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501,F401,W391'
+"autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501,F401,W391'
+autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501'
 
 "-----------------------------------------------------------------------------
 " tagbar
