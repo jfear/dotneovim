@@ -15,26 +15,27 @@ function! BuildComposer(info)
 endfunction
 
 call plug#begin()
+Plug 'Rykka/riv.vim'
+Plug 'ap/vim-buftabline'
+Plug 'bfredl/nvim-ipy'
+Plug 'ccwang002/vim-snakemake'
+Plug 'chrisbra/csv.vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+Plug 'godlygeek/tabular'
+Plug 'jalvesaq/Nvim-R'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'majutsushi/tagbar'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
-Plug 'junegunn/seoul256.vim'
-Plug 'bfredl/nvim-ipy'
-Plug 'jalvesaq/Nvim-R'
-Plug 'davidhalter/jedi-vim'
-Plug 'chrisbra/csv.vim'
+Plug 'tmhedberg/SimpylFold'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-markdown'
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
-Plug 'majutsushi/tagbar'
-Plug 'junegunn/goyo.vim'
-Plug 'godlygeek/tabular'
-Plug 'tmhedberg/SimpylFold'
 Plug 'vimwiki/vimwiki'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'ccwang002/vim-snakemake'
-Plug 'ap/vim-buftabline'
 
 " plugin on GitHub repo
 "Plug 'fholgado/minibufexpl.vim'
