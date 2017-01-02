@@ -16,18 +16,20 @@ endfunction
 
 call plug#begin()
 Plug 'Rykka/riv.vim'
+Plug 'Rykka/InstantRst'
 Plug 'ap/vim-buftabline'
 Plug 'bfredl/nvim-ipy'
 Plug 'ccwang002/vim-snakemake'
 Plug 'chrisbra/csv.vim'
 Plug 'davidhalter/jedi-vim'
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+"Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 Plug 'godlygeek/tabular'
 Plug 'jalvesaq/Nvim-R'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'majutsushi/tagbar'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'nvie/vim-rst-tables'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
 Plug 'tmhedberg/SimpylFold'
@@ -36,29 +38,13 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
+Plug 'visincr'
 
 " plugin on GitHub repo
-"Plug 'fholgado/minibufexpl.vim'
 "Plug 'garbas/vim-snipmate'
 "Plug 'MarcWeber/vim-addon-mw-utils'
-"Plug 'nvie/vim-rst-tables'
 "Plug 'tomtom/tlib_vim'
 "Plug 'vim-pandoc/vim-pandoc'
-"Plug 'vim-scripts/bash-support.vim'
-"Plug 'vim-scripts/perl-support.vim'
-"Plug 'ynkdir/vim-diff'
-"Plug 'bling/vim-airline'
-"Plug 'kien/ctrlp.vim'
-"Plug 'EricGebhart/SAS-Vim'
-"Plug 'Valloric/YouCompleteMe'
-"Plug 'suan/vim-instant-markdown'
-"Plug 'plasticboy/vim-markdown'
-
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plug 'visincr'
-"Plug 'Vim-R-plugin'
-"Plug 'Conque-GDB'
-"Plug 'oplatek/Conque-Shell'
 
 call plug#end()            " required
 
@@ -78,14 +64,14 @@ set expandtab       " Replace tab with spaces
 set tabstop=4       " Replace tab with 4 spaces
 set softtabstop=4   " Replace tab with 4 spaces
 set shiftwidth=4    " This is kind of like tabstop, except when you are in insert  mode you hit <C-D> or <C-T>
-set nospell
+set nospell         " Turn off spell check
 
-set scrolloff=3
+set scrolloff=3     " Minimal number of screen lines to keep above and below the cursor.
 set showcmd
 set wildmode=list:longest
-set novisualbell
-set nocursorline
-set ruler
+set novisualbell    " Use visual bell instead of beeping.
+set nocursorline    " Highlight the screen line of the cursor with CursorLine |hl-CursorLine|.
+set ruler           " Show the line and column number of the cursor position, separated by a comma
 set backspace=indent,eol,start
 set laststatus=2
 
@@ -97,13 +83,6 @@ set clipboard+=unnamedplus
 set modeline
 set modelines=1
 
-command Bd bp\|bd \#            " This will close a buffer and not close split
-
-"let mapleader = ","
-nnoremap ,<space> :noh<cr>
-nnoremap <tab> %
-vnoremap <tab> %
-
 let g:seoul256_background = 234
 colorscheme seoul256
 
@@ -111,12 +90,19 @@ colorscheme seoul256
 " Key Mappings
 " -----------------------------------------------------------------------
 
+command Bd bp\|bd \#            " This will close a buffer and not close split
+
+"let mapleader = ","
+nnoremap ,<space> :noh<cr>      " Turns off highlighting
+nnoremap <tab> %
+vnoremap <tab> %
+
 " Maps j and k to gj and gk so that when lines wrap you will move down one
 " line at a time.
 nmap j gj
 nmap k gk
 
-"Move the cursor in split mode
+" Move the cursor in split mode
 noremap <silent> ,h :wincmd h<cr>
 noremap <silent> ,j :wincmd j<cr>
 noremap <silent> ,k :wincmd k<cr>
@@ -137,7 +123,8 @@ noremap <silent> ,mj <C-W>J
 " Map CTRL-E to do what ',' used to do
 nnoremap <c-e> ,
 vnoremap <c-e> ,
-map <F1> <Esc>
+
+" Map jj to escape
 imap jj <Esc>
 tnoremap <Esc> <C-\><C-n>
 
@@ -154,17 +141,16 @@ nmap <silent> ,w :set invwrap<CR>:set wrap?<CR>
 nnoremap + maO<esc>`a
 noremap - mao<esc>`a
 
-nmap <C-p> "+gP
-
 " Insert Date
 nnoremap <F5> "=strftime("%m/%d/%Y")<CR>P
 inoremap <F5> <C-R>=strftime("%m/%d/%Y")<CR>
 
+" add/remove comments on visual selection
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
 " -----------------------------------------------------------------------
-" Buffer Settings
+" Buffer and Filetype Settings
 " -----------------------------------------------------------------------
 
 " Change to the current directory of the current file
@@ -183,10 +169,10 @@ au BufRead,BufNewfile *.txt set spell spelllang=en
 au BufRead,BufNewfile *.txt set nonumber
 
 " Latex
-au BufRead,BufNewfile *.tex set nonumber
 au BufRead,BufNewfile *.tex set lbr
 au BufRead,BufNewfile *.tex set tw=80
 au BufRead,BufNewfile *.tex set spell spelllang=en
+au BufRead,BufNewfile *.tex set nonumber
 
 " Markdown
 au BufRead,BufNewfile *.mkd set lbr
@@ -214,7 +200,6 @@ au BufRead,BufNewfile *.tsv set nonumber
 " Python
 au BufRead,BufNewfile *.py set ft=python
 au BufRead,BufNewFile *.py set syntax=python
-au BufRead,BufNewfile *.py set foldmethod=indent
 au BufRead,BufNewfile *.py set number
 au BufRead,BufNewfile *.py let g:strip_whitespace_on_save = 1
 
@@ -244,7 +229,6 @@ au BufNewFile,BufRead *.yml set shiftwidth=2
 " -----------------------------------------------------------------------
 " SAS Settings
 " -----------------------------------------------------------------------
-
 " Allows copying to X11 clipboard
 :com -range Cz :silent :<line1>,<line2>w !xsel -i -b
 :com -range Cx :silent :<line1>,<line2>w !xsel -i -p
@@ -302,12 +286,6 @@ endfunction
 nnoremap <silent> <Leader>kk :call RMakeHTML_2("knitrBootstrap::bootstrap_document")<CR>
 nnoremap <silent> <Leader>km :!mv %:r.html ../output/<CR>
 
-
-"-----------------------------------------------------------------------------
-" Minibufexplorer
-"-----------------------------------------------------------------------------
-let g:miniBufExplorerMoreThanOne=2
-
 "-----------------------------------------------------------------------------
 " vim-rst-tables
 "-----------------------------------------------------------------------------
@@ -334,25 +312,22 @@ autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501'
 "-----------------------------------------------------------------------------
 nmap ,t :TagbarToggle<CR>
 
-
 "-----------------------------------------------------------------------------
 " jedi-vim Settings
 "-----------------------------------------------------------------------------
 let g:jedi#popup_on_dot = 0
 
-
+"-----------------------------------------------------------------------------
 " vim-markdown
 "-----------------------------------------------------------------------------
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost README set filetype=markdown
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'r']
 
-
 "-----------------------------------------------------------------------------
 " vim-markdown-composer
 "-----------------------------------------------------------------------------
 let g:markdown_composer_autostart=0
-
 
 "-----------------------------------------------------------------------------
 " SimplyFold
@@ -362,21 +337,22 @@ autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_import = 0
 
-
 "-----------------------------------------------------------------------------
 " Vimwiki
 "-----------------------------------------------------------------------------
-let wiki_1 = {}
-let wiki_1.path = '~/Dropbox/wiki/research'
-let wiki_1.path_html = '~/Dropbox/wiki/public_html'
-let wiki_1.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
-let wiki_1.ext = '.md'
-let wiki_1.syntax = 'markdown'
-let g:vimwiki_list = [wiki_1]
+" let wiki_1 = {}
+" let wiki_1.path = '~/Dropbox/wiki/research'
+" let wiki_1.path_html = '~/Dropbox/wiki/public_html'
+" let wiki_1.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
+" let wiki_1.ext = '.md'
+" let wiki_1.syntax = 'markdown'
+" let g:vimwiki_list = [wiki_1]
 
 "-----------------------------------------------------------------------------
-" Better White Space
+" Riv
 "-----------------------------------------------------------------------------
+let proj1 = {'~/SpiderOak Hive/test'}
+let g:riv_projects = [proj1]
 
 "-----------------------------------------------------------------------------
 " Bufftabline
@@ -386,13 +362,3 @@ let g:buftabline_numbers = 1
 "=============================================================================
 "                                Functions
 "=============================================================================
-function! RunNoteDown()
-endfunction
-
-function! TrimSpaces()
-    let l:save = winsaveview()
-    %s/\s\+$//e
-    w
-    call winsaveview()
-endfun
-command! TrimSpaces call TrimSpaces()
