@@ -29,7 +29,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'majutsushi/tagbar'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'nvie/vim-rst-tables'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
 Plug 'tmhedberg/SimpylFold'
@@ -191,17 +190,18 @@ au BufReadCmd *.genome call zip#Browse(expand(""))
 " CSV
 au BufRead,BufNewfile *.csv set ft=csv
 au BufRead,BufNewfile *.csv set nonumber
+au BufRead,BufNewfile *.csv let g:strip_whitespace_on_save = 0
 
 " TSV
 au BufRead,BufNewfile *.tsv set ft=csv
 au BufRead,BufNewfile *.tsv set noexpandtab
 au BufRead,BufNewfile *.tsv set nonumber
+au BufRead,BufNewfile *.tsv let g:strip_whitespace_on_save = 0
 
 " Python
 au BufRead,BufNewfile *.py set ft=python
 au BufRead,BufNewFile *.py set syntax=python
 au BufRead,BufNewfile *.py set number
-au BufRead,BufNewfile *.py let g:strip_whitespace_on_save = 1
 
 au BufNewFIle,BufRead *.pymd set ft=markdown.python
 
@@ -209,13 +209,11 @@ au BufNewFIle,BufRead *.pymd set ft=markdown.python
 au BufNewFile,BufRead Snakefile set syntax=snakemake
 au BufNewFile,BufRead Snakefile set foldmethod=indent
 au BufNewFile,BufRead Snakefile set number
-au BufRead,BufNewfile Snakefile let g:strip_whitespace_on_save = 1
 
 au BufNewFile,BufRead *.snake set ft=snakemake.python
 au BufNewFile,BufRead *.snake set syntax=snakemake
 au BufNewFile,BufRead *.snake set foldmethod=indent
 au BufNewFile,BufRead *.snake set number
-au BufRead,BufNewfile *.snake let g:strip_whitespace_on_save = 1
 
 " YAML
 au BufNewFile,BufRead *.yaml set syntax=yaml
@@ -228,6 +226,14 @@ au BufNewFile,BufRead *.yml set shiftwidth=2
 
 
 " rst
+au BufRead,BufNewfile *.rst set lbr
+au BufRead,BufNewfile *.rst set tw=80
+au BufRead,BufNewfile *.rst set spell spelllang=en
+au BufRead,BufNewfile *.rst set nonumber
+au BufRead,BufNewfile *.rst set syntax=rst
+au BufRead,BufNewfile *.rst set fo=want
+
+
 " Headings
 au FileType rst nnoremap <leader>h1 ^yypv$r=o<cr><esc>
 au FileType rst inoremap <leader>h1 <esc>^yypv$r=o<cr>
@@ -414,6 +420,11 @@ let g:SimpylFold_fold_import = 0
 " Bufftabline
 "-----------------------------------------------------------------------------
 let g:buftabline_numbers = 1
+
+"-----------------------------------------------------------------------------
+" Better White Space
+"-----------------------------------------------------------------------------
+let g:strip_whitespace_on_save = 1
 
 "=============================================================================
 "                                Functions
