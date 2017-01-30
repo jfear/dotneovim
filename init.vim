@@ -190,13 +190,11 @@ au BufReadCmd *.genome call zip#Browse(expand(""))
 " CSV
 au BufRead,BufNewfile *.csv set ft=csv
 au BufRead,BufNewfile *.csv set nonumber
-au BufRead,BufNewfile *.csv let g:strip_whitespace_on_save = 0
 
 " TSV
 au BufRead,BufNewfile *.tsv set ft=csv
 au BufRead,BufNewfile *.tsv set noexpandtab
 au BufRead,BufNewfile *.tsv set nonumber
-au BufRead,BufNewfile *.tsv let g:strip_whitespace_on_save = 0
 
 " Python
 au BufRead,BufNewfile *.py set ft=python
@@ -267,7 +265,7 @@ au FileType rst iabbrev iii .. image:: TODO.png<cr>    :scale: 100<cr>:align: ce
 "au FileType rst iabbrev iif .. figure:: TODO.png<cr>    :scale: 100<cr>:align: center<cr>:alt: TODO<cr><cr><cr>Some brief description<esc>kkkeel
 
 "Create note
-au FileType rst iabbrev nnn .. note::<cr>    
+au FileType rst iabbrev nnn .. note::<cr>
 
 "Start or end bold text inline
 au FileType rst inoremap <leader>bb **
@@ -415,6 +413,7 @@ let g:SimpylFold_fold_import = 0
 "-----------------------------------------------------------------------------
 " let proj1 = {'~/SpiderOak Hive/test'}
 " let g:riv_projects = [proj1]
+let g:riv_auto_format_table = 0
 
 "-----------------------------------------------------------------------------
 " Bufftabline
@@ -425,6 +424,7 @@ let g:buftabline_numbers = 1
 " Better White Space
 "-----------------------------------------------------------------------------
 let g:strip_whitespace_on_save = 1
+let g:better_whitespace_filtypes_blacklist = ['rst', 'csv', 'diff', 'gitcommit', 'unite', 'qf', 'help', 'markdown']
 
 "=============================================================================
 "                                Functions
