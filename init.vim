@@ -424,7 +424,7 @@ let g:buftabline_numbers = 1
 " Better White Space
 "-----------------------------------------------------------------------------
 let g:strip_whitespace_on_save = 1
-let g:better_whitespace_filtypes_blacklist = ['rst', 'csv', 'diff', 'gitcommit', 'unite', 'qf', 'help', 'markdown']
+let g:better_whitespace_filetypes_blacklist=['rst', 'csv', 'diff', 'gitcommit', 'unite', 'qf', 'help']
 
 "=============================================================================
 "                                Functions
