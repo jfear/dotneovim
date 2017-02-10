@@ -78,7 +78,7 @@ set ignorecase
 set smartcase
 set incsearch
 set showmatch
-set clipboard+=unnamedplus
+set clipboard=unnamed
 set modeline
 set modelines=1
 
