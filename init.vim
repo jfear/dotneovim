@@ -309,10 +309,10 @@ au FileType rst iabbrev adn .. note::
 "-----------------------------------------------------------------------------
 " nvim-ipy
 "-----------------------------------------------------------------------------
-autocmd FileType markdown.python,python let g:nvim_ipy_perform_mappings = 0
-autocmd FileType markdown.python,python map ,r <Plug>(IPy-Run)
+autocmd FileType markdown.python,snakemake.python,python let g:nvim_ipy_perform_mappings = 0
+autocmd FileType markdown.python,snakemake.python,python map ,r <Plug>(IPy-Run)
 "autocmd FileType markdown.python,python imap  <ESC><Plug>(IPy-Run)
-autocmd FileType markdown.python,python map ,/ <Plug>(IPy-WordObjInfo)
+autocmd FileType markdown.python,snakemake.python,python map ,/ <Plug>(IPy-WordObjInfo)
 
 "-----------------------------------------------------------------------------
 " Nvim-R
