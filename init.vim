@@ -38,6 +38,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
 Plug 'visincr'
+Plug 'Vimjas/vim-python-pep8-indent'
 
 " plugin on GitHub repo
 "Plug 'garbas/vim-snipmate'
@@ -330,7 +331,7 @@ let R_vsplit = 1  " nvim-r puts the console on the right with <LocalLeader>rf
 let rout_follow_colorscheme = 1
 let R_assign = 3  " nvim-r replaces ' __ ' with ' <- '
 let R_nvimpager = "horizontal"
-"let R_objbr_place = "console,bottom" 
+"let R_objbr_place = "console,bottom"
 
 
 "-----------------------------------------------------------------------------
