@@ -19,6 +19,7 @@ Plug 'Rykka/riv.vim'
 Plug 'Rykka/InstantRst'
 Plug 'ap/vim-buftabline'
 Plug 'bfredl/nvim-ipy'
+Plug 'julienr/vim-cellmode'
 Plug 'ccwang002/vim-snakemake'
 Plug 'chrisbra/csv.vim'
 Plug 'davidhalter/jedi-vim'
@@ -223,6 +224,10 @@ au BufNewFile,BufRead *.yml set syntax=yaml
 au BufNewFile,BufRead *.yml set foldmethod=indent
 au BufNewFile,BufRead *.yml set shiftwidth=2
 
+" HTML
+au BufNewFile,BufRead *.html set syntax=html
+au BufNewFile,BufRead *.html set foldmethod=indent
+au BufNewFile,BufRead *.html set shiftwidth=2
 
 " rst
 au BufRead,BufNewfile *.rst set lbr
@@ -432,6 +437,15 @@ let g:buftabline_numbers = 1
 "-----------------------------------------------------------------------------
 let g:strip_whitespace_on_save = 1
 let g:better_whitespace_filetypes_blacklist=['rst', 'csv', 'diff', 'gitcommit', 'unite', 'qf', 'help']
+
+"-----------------------------------------------------------------------------
+" vim cellmode
+"-----------------------------------------------------------------------------
+let g:cellmode_use_tmux=1
+let g:cellmode_tmux_sessionname=''
+let g:cellmode_tmux_windowname=''
+let g:cellmode_tmux_panenumber='1'
+
 
 "=============================================================================
 "                                Functions
