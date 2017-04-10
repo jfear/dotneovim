@@ -32,7 +32,7 @@ Plug 'majutsushi/tagbar'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
-Plug 'tmhedberg/SimpylFold'
+" Plug 'tmhedberg/SimpylFold'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
@@ -202,6 +202,7 @@ au BufRead,BufNewfile *.tsv set nonumber
 au BufRead,BufNewfile *.py set ft=python
 au BufRead,BufNewFile *.py set syntax=python
 au BufRead,BufNewfile *.py set number
+au BufRead,BufNewfile *.py set foldmethod=indent
 
 au BufNewFIle,BufRead *.pymd set ft=markdown.python
 
@@ -404,10 +405,10 @@ let g:markdown_composer_autostart=0
 "-----------------------------------------------------------------------------
 " SimplyFold
 "-----------------------------------------------------------------------------
-autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
-autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
-let g:SimpylFold_docstring_preview = 1
-let g:SimpylFold_fold_import = 0
+" autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
+" autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+" let g:SimpylFold_docstring_preview = 1
+" let g:SimpylFold_fold_import = 0
 
 "-----------------------------------------------------------------------------
 " Vimwiki
