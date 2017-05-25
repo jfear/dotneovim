@@ -333,7 +333,7 @@ autocmd FileType r,rmd,rnw vmap <Space> <Plug>RDSendSelection
 autocmd FileType r,rmd,rnw nmap <Space> <Plug>RDSendLine
 autocmd FileType r,rmd,rnw set foldmethod=syntax
 
-let R_vsplit = 1  " nvim-r puts the console on the right with <LocalLeader>rf
+"let R_vsplit = 1  " nvim-r puts the console on the right with <LocalLeader>rf
 let rout_follow_colorscheme = 1
 let R_assign = 3  " nvim-r replaces ' __ ' with ' <- '
 let R_nvimpager = "horizontal"
