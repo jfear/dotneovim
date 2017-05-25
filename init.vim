@@ -40,6 +40,7 @@ Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
 Plug 'visincr'
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'mattn/gist-vim'
 
 " plugin on GitHub repo
 "Plug 'garbas/vim-snipmate'
