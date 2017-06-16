@@ -42,6 +42,7 @@ Plug 'visincr'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
+Plug 'vimoutliner/vimoutliner'
 
 " plugin on GitHub repo
 "Plug 'garbas/vim-snipmate'
