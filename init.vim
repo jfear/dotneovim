@@ -322,6 +322,7 @@ au FileType rst iabbrev adn .. note::
 autocmd FileType votl set tabstop=2
 autocmd FileType votl set shiftwidth=2
 
+
 "-----------------------------------------------------------------------------
 " nvim-ipy
 "-----------------------------------------------------------------------------
@@ -374,20 +375,20 @@ noremap <silent> ;;f : call ReflowTable()<CR>
 "-----------------------------------------------------------------------------
 " Syntastic
 "-----------------------------------------------------------------------------
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-
-nnoremap ,sc :SyntasticToggleMode<CR>:w<CR>
-
-"autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501,F401,W391'
-autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501'
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+"
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+"
+" nnoremap ,sc :SyntasticToggleMode<CR>:w<CR>
+"
+" "autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501,F401,W391'
+" autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501'
 
 "-----------------------------------------------------------------------------
 " tagbar
