@@ -219,6 +219,11 @@ au BufNewFile,BufRead *.snake set syntax=snakemake
 au BufNewFile,BufRead *.snake set foldmethod=indent
 au BufNewFile,BufRead *.snake set number
 
+au BufNewFile,BufRead *.snakefile set ft=snakemake.python
+au BufNewFile,BufRead *.snakefile set syntax=snakemake
+au BufNewFile,BufRead *.snakefile set foldmethod=indent
+au BufNewFile,BufRead *.snakefile set number
+
 " YAML
 au BufNewFile,BufRead *.yaml set syntax=yaml
 au BufNewFile,BufRead *.yaml set foldmethod=indent
