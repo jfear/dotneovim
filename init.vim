@@ -31,7 +31,7 @@ Plug 'junegunn/seoul256.vim'
 Plug 'majutsushi/tagbar'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-"Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 " Plug 'tmhedberg/SimpylFold'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
@@ -83,9 +83,10 @@ set ignorecase
 set smartcase
 set incsearch
 set showmatch
-set clipboard=unnamed
+set clipboard+=unnamedplus
 set modeline
 set modelines=1
+set mouse=a
 
 let g:seoul256_background = 234
 colorscheme seoul256
@@ -302,7 +303,8 @@ au FileType rst iabbrev adn .. note::
 " SAS Settings
 " -----------------------------------------------------------------------
 " Allows copying to X11 clipboard
-:com -range Cz :silent :<line1>,<line2>w !xsel -i -b
+":com -range Cz :silent :<line1>,<line2>w !xsel -i -b
+:com -range Cz :silent :<line1>,<line2>w !xclip -i -selection clipboard
 :com -range Cx :silent :<line1>,<line2>w !xsel -i -p
 :com -range Cv :silent :<line1>,<line2>w !xsel -i -s
 :ca cv Cv
@@ -380,19 +382,19 @@ noremap <silent> ;;f : call ReflowTable()<CR>
 "-----------------------------------------------------------------------------
 " Syntastic
 "-----------------------------------------------------------------------------
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-"
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-"
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+
 " nnoremap ,sc :SyntasticToggleMode<CR>:w<CR>
-"
-" "autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501,F401,W391'
+
+" autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501,F401,W391'
 " autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501'
 
 "-----------------------------------------------------------------------------
