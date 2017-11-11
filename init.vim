@@ -19,25 +19,30 @@ Plug 'Rykka/riv.vim'
 Plug 'Rykka/InstantRst'
 Plug 'ap/vim-buftabline'
 Plug 'bfredl/nvim-ipy'
+"Plug 'julienr/vim-cellmode'
 Plug 'ccwang002/vim-snakemake'
 Plug 'chrisbra/csv.vim'
 Plug 'davidhalter/jedi-vim'
 "Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 Plug 'godlygeek/tabular'
 Plug 'jalvesaq/Nvim-R'
-Plug 'junegunn/goyo.vim'
+"Plug 'junegunn/goyo.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'majutsushi/tagbar'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
-Plug 'tmhedberg/SimpylFold'
+" Plug 'tmhedberg/SimpylFold'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'vimwiki/vimwiki'
+"Plug 'vimwiki/vimwiki'
 Plug 'visincr'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
+Plug 'vimoutliner/vimoutliner'
 
 " plugin on GitHub repo
 "Plug 'garbas/vim-snipmate'
@@ -81,6 +86,7 @@ set showmatch
 set clipboard+=unnamedplus
 set modeline
 set modelines=1
+set mouse=a
 
 let g:seoul256_background = 234
 colorscheme seoul256
@@ -190,18 +196,17 @@ au BufReadCmd *.genome call zip#Browse(expand(""))
 " CSV
 au BufRead,BufNewfile *.csv set ft=csv
 au BufRead,BufNewfile *.csv set nonumber
-au BufRead,BufNewfile *.csv let g:strip_whitespace_on_save = 0
 
 " TSV
 au BufRead,BufNewfile *.tsv set ft=csv
 au BufRead,BufNewfile *.tsv set noexpandtab
 au BufRead,BufNewfile *.tsv set nonumber
-au BufRead,BufNewfile *.tsv let g:strip_whitespace_on_save = 0
 
 " Python
 au BufRead,BufNewfile *.py set ft=python
 au BufRead,BufNewFile *.py set syntax=python
 au BufRead,BufNewfile *.py set number
+au BufRead,BufNewfile *.py set foldmethod=indent
 
 au BufNewFIle,BufRead *.pymd set ft=markdown.python
 
@@ -215,6 +220,11 @@ au BufNewFile,BufRead *.snake set syntax=snakemake
 au BufNewFile,BufRead *.snake set foldmethod=indent
 au BufNewFile,BufRead *.snake set number
 
+au BufNewFile,BufRead *.snakefile set ft=snakemake.python
+au BufNewFile,BufRead *.snakefile set syntax=snakemake
+au BufNewFile,BufRead *.snakefile set foldmethod=indent
+au BufNewFile,BufRead *.snakefile set number
+
 " YAML
 au BufNewFile,BufRead *.yaml set syntax=yaml
 au BufNewFile,BufRead *.yaml set foldmethod=indent
@@ -224,6 +234,10 @@ au BufNewFile,BufRead *.yml set syntax=yaml
 au BufNewFile,BufRead *.yml set foldmethod=indent
 au BufNewFile,BufRead *.yml set shiftwidth=2
 
+" HTML
+au BufNewFile,BufRead *.html set syntax=html
+au BufNewFile,BufRead *.html set foldmethod=indent
+au BufNewFile,BufRead *.html set shiftwidth=2
 
 " rst
 au BufRead,BufNewfile *.rst set lbr
@@ -267,7 +281,7 @@ au FileType rst iabbrev iii .. image:: TODO.png<cr>    :scale: 100<cr>:align: ce
 "au FileType rst iabbrev iif .. figure:: TODO.png<cr>    :scale: 100<cr>:align: center<cr>:alt: TODO<cr><cr><cr>Some brief description<esc>kkkeel
 
 "Create note
-au FileType rst iabbrev nnn .. note::<cr>    
+au FileType rst iabbrev nnn .. note::<cr>
 
 "Start or end bold text inline
 au FileType rst inoremap <leader>bb **
@@ -289,7 +303,8 @@ au FileType rst iabbrev adn .. note::
 " SAS Settings
 " -----------------------------------------------------------------------
 " Allows copying to X11 clipboard
-:com -range Cz :silent :<line1>,<line2>w !xsel -i -b
+":com -range Cz :silent :<line1>,<line2>w !xsel -i -b
+:com -range Cz :silent :<line1>,<line2>w !xclip -i -selection clipboard
 :com -range Cx :silent :<line1>,<line2>w !xsel -i -p
 :com -range Cv :silent :<line1>,<line2>w !xsel -i -s
 :ca cv Cv
@@ -309,12 +324,19 @@ au FileType rst iabbrev adn .. note::
 "=============================================================================
 
 "-----------------------------------------------------------------------------
+" vimoutliner
+"-----------------------------------------------------------------------------
+autocmd FileType votl set tabstop=2
+autocmd FileType votl set shiftwidth=2
+
+
+"-----------------------------------------------------------------------------
 " nvim-ipy
 "-----------------------------------------------------------------------------
-autocmd FileType markdown.python,python let g:nvim_ipy_perform_mappings = 0
-autocmd FileType markdown.python,python map ,r <Plug>(IPy-Run)
+autocmd FileType markdown.python,snakemake.python,python let g:nvim_ipy_perform_mappings = 0
+autocmd FileType markdown.python,snakemake.python,python map ,r <Plug>(IPy-Run)
 "autocmd FileType markdown.python,python imap  <ESC><Plug>(IPy-Run)
-autocmd FileType markdown.python,python map ,/ <Plug>(IPy-WordObjInfo)
+autocmd FileType markdown.python,snakemake.python,python map ,/ <Plug>(IPy-WordObjInfo)
 
 "-----------------------------------------------------------------------------
 " Nvim-R
@@ -327,6 +349,12 @@ endif
 autocmd FileType r,rmd,rnw vmap <Space> <Plug>RDSendSelection
 autocmd FileType r,rmd,rnw nmap <Space> <Plug>RDSendLine
 autocmd FileType r,rmd,rnw set foldmethod=syntax
+
+"let R_vsplit = 1  " nvim-r puts the console on the right with <LocalLeader>rf
+let rout_follow_colorscheme = 1
+let R_assign = 3  " nvim-r replaces ' __ ' with ' <- '
+let R_nvimpager = "horizontal"
+"let R_objbr_place = "console,bottom"
 
 
 "-----------------------------------------------------------------------------
@@ -360,14 +388,14 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 
-nnoremap ,sc :SyntasticToggleMode<CR>:w<CR>
+" nnoremap ,sc :SyntasticToggleMode<CR>:w<CR>
 
-"autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501,F401,W391'
-autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501'
+" autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501,F401,W391'
+" autocmd FileType python let g:syntastic_python_flake8_args='--ignore=E501'
 
 "-----------------------------------------------------------------------------
 " tagbar
@@ -394,10 +422,10 @@ let g:markdown_composer_autostart=0
 "-----------------------------------------------------------------------------
 " SimplyFold
 "-----------------------------------------------------------------------------
-autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
-autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
-let g:SimpylFold_docstring_preview = 1
-let g:SimpylFold_fold_import = 0
+" autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
+" autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+" let g:SimpylFold_docstring_preview = 1
+" let g:SimpylFold_fold_import = 0
 
 "-----------------------------------------------------------------------------
 " Vimwiki
@@ -415,6 +443,7 @@ let g:SimpylFold_fold_import = 0
 "-----------------------------------------------------------------------------
 " let proj1 = {'~/SpiderOak Hive/test'}
 " let g:riv_projects = [proj1]
+let g:riv_auto_format_table = 0
 
 "-----------------------------------------------------------------------------
 " Bufftabline
@@ -425,6 +454,16 @@ let g:buftabline_numbers = 1
 " Better White Space
 "-----------------------------------------------------------------------------
 let g:strip_whitespace_on_save = 1
+let g:better_whitespace_filetypes_blacklist=['rst', 'csv', 'diff', 'gitcommit', 'unite', 'qf', 'help']
+
+"-----------------------------------------------------------------------------
+" vim cellmode
+"-----------------------------------------------------------------------------
+let g:cellmode_use_tmux=1
+let g:cellmode_tmux_sessionname=''
+let g:cellmode_tmux_windowname=''
+let g:cellmode_tmux_panenumber='1'
+
 
 "=============================================================================
 "                                Functions
