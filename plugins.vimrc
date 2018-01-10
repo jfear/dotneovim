@@ -90,7 +90,7 @@ aug end
 " nvim-ipy
 au FileType markdown.python,snakemake.python,python let g:nvim_ipy_perform_mappings = 0
 au FileType markdown.python,snakemake.python,python map ,r <Plug>(IPy-Run)
-au FileType markdown.python,python imap  <ESC><Plug>(IPy-Run)
+" au FileType markdown.python,python imap  <ESC><Plug>(IPy-Run)
 au FileType markdown.python,snakemake.python,python map ,/ <Plug>(IPy-WordObjInfo)
 
 " rst-tables

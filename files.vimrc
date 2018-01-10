@@ -36,6 +36,7 @@ au BufRead,BufNewfile *.py
   \ set softtabstop=4 |
   \ set shiftwidth=4 |
   \ set foldmethod=indent |
+  \ set colorcolumn=79 |
   \ let b:comment_leader = '# '
 
 " Snakemake
