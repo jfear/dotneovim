@@ -38,9 +38,6 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('w0rp/ale',
     \ {'on_ft': ['python', 'snakemake']})
 
-  call dein#add('tmhedberg/SimpylFold',
-    \ {'on_ft': ['python', 'snakemake']})
-
   call dein#add('Vimjas/vim-python-pep8-indent',
     \ {'on_ft': ['python', 'snakemake']})
 

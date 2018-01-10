@@ -10,6 +10,11 @@ let g:deoplete#enable_at_startup = 1
 "     let g:deoplete#disable_auto_complete = 1
 set completeopt=menu
 
+" Neosnippet
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
 " Deoplete Jedi
 let g:deoplete#sources#jedi#server_timeout = 50
 
@@ -36,10 +41,6 @@ let g:better_whitespace_filetypes_blacklist=['rst', 'csv', 'diff', 'gitcommit', 
 
 " tagbar
 nmap ,t :TagbarToggle<CR>
-
-" SimplyFold
-let g:SimpylFold_docstring_preview = 1
-let g:SimpylFold_fold_import = 0
 
 " Nvim-R
 au Filetype r,rmd,rnw inoremap <C-Space> <C-x><C-o>
