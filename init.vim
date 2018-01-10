@@ -20,16 +20,15 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/deoplete.nvim', {'on_i': 1})
   call dein#add('Shougo/denite.nvim', {'on_cmd': 'Denite'})
-  call dein#add('Shougo/deol.nvim')
-  call dein#add('Shougo/echodoc.vim', {'on_i': 1})
+  call dein#add('Shougo/deol.nvim', {'on_cmd': 'Deol'})
 
   " scrooloose
   call dein#add('scrooloose/nerdtree', {'on_cmd': 'NerdTreeToggle'})
 
   " tpope
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('tpope/vim-surround')
-  call dein#add('tpope/vim-repeat')
+  call dein#add('tpope/vim-fugitive', {'on_i': 1})
+  call dein#add('tpope/vim-surround', {'on_i': 1})
+  call dein#add('tpope/vim-repeat', {'on_i': 1})
 
   " Python
   call dein#add('zchee/deoplete-jedi',
@@ -54,6 +53,8 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('ccwang002/vim-snakemake',
     \ {'on_ft': ['snakemake']})
 
+  call dein#add('Shougo/echodoc.vim', {'on_ft': ['python', 'snakemake']})
+
   " R
   call dein#add('jalvesaq/Nvim-R',
     \ {'on_ft': ['r', 'rmd']})
@@ -63,9 +64,10 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
   call dein#add('airblade/vim-gitgutter')
-  call dein#add('ntpeters/vim-better-whitespace')
-  call dein#add('triglav/vim-visual-increment')
-  call dein#add('jlesquembre/rst-tables.nvim')
+  call dein#add('ntpeters/vim-better-whitespace', {'on_i': 1})
+  call dein#add('triglav/vim-visual-increment', {'on_i': 1})
+  call dein#add('jlesquembre/rst-tables.nvim',
+    \ {'on_cmd': ['TableRstFormat', 'TableRstReflow']})
   call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
   call dein#add('chrisbra/csv.vim', {'on_ft': ['csv', 'tsv']})
   call dein#add('godlygeek/tabular', {'on_cmd': 'Tabularize'})
