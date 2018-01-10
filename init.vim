@@ -48,6 +48,12 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('davidhalter/jedi-vim',
     \ {'on_ft': ['python', 'snakemake']})
 
+  call dein#add('bfredl/nvim-ipy',
+    \ {'on_ft': ['python', 'snakemake']})
+
+  call dein#add('ccwang002/vim-snakemake',
+    \ {'on_ft': ['snakemake']})
+
   " R
   call dein#add('jalvesaq/Nvim-R',
     \ {'on_ft': ['r', 'rmd']})
@@ -59,21 +65,14 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('ntpeters/vim-better-whitespace')
   call dein#add('triglav/vim-visual-increment')
+  call dein#add('jlesquembre/rst-tables.nvim')
   call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
   call dein#add('chrisbra/csv.vim', {'on_ft': ['csv', 'tsv']})
+  call dein#add('godlygeek/tabular', {'on_cmd': 'Tabularize'})
 
 "Plug 'Rykka/riv.vim'
 "Plug 'Rykka/InstantRst'
-"Plug 'bfredl/nvim-ipy'
-""Plug 'julienr/vim-cellmode'
-"Plug 'ccwang002/vim-snakemake'
-"Plug 'chrisbra/csv.vim'
-"Plug 'davidhalter/jedi-vim'
-"Plug 'godlygeek/tabular'
 "Plug 'tpope/vim-markdown'
-"Plug 'visincr'
-"Plug 'mattn/gist-vim'
-"Plug 'mattn/webapi-vim'
 
 
   " You can specify revision/branch/tag.

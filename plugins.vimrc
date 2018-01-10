@@ -86,47 +86,12 @@ aug CSV_Editing
   au BufWritePre *.csv,*.tsv :%UnArrangeColumn
 aug end
 
+" nvim-ipy
+au FileType markdown.python,snakemake.python,python let g:nvim_ipy_perform_mappings = 0
+au FileType markdown.python,snakemake.python,python map ,r <Plug>(IPy-Run)
+au FileType markdown.python,python imap  <ESC><Plug>(IPy-Run)
+au FileType markdown.python,snakemake.python,python map ,/ <Plug>(IPy-WordObjInfo)
 
-
-""-----------------------------------------------------------------------------
-"" nvim-ipy
-""-----------------------------------------------------------------------------
-"autocmd FileType markdown.python,snakemake.python,python let g:nvim_ipy_perform_mappings = 0
-"autocmd FileType markdown.python,snakemake.python,python map ,r <Plug>(IPy-Run)
-""autocmd FileType markdown.python,python imap  <ESC><Plug>(IPy-Run)
-"autocmd FileType markdown.python,snakemake.python,python map ,/ <Plug>(IPy-WordObjInfo)
-
-
-""-----------------------------------------------------------------------------
-"" vim-rst-tables
-""-----------------------------------------------------------------------------
-"noremap <silent> ;;c : call ReformatTable()<CR>
-"noremap <silent> ;;f : call ReflowTable()<CR>
-"
-"
-
-""-----------------------------------------------------------------------------
-"" jedi-vim Settings
-""-----------------------------------------------------------------------------
-"let g:jedi#popup_on_dot = 0
-"
-"let g:jedi#auto_vim_configuration = 0
-"let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
-"let g:jedi#goto_definitions_command = ''  " dynamically done for ft=python.
-"let g:jedi#use_tabs_not_buffers = 0  " current default is 1.
-"let g:jedi#rename_command = '<Leader>gR'
-"let g:jedi#usages_command = '<Leader>gu'
-"let g:jedi#completions_enabled = 0
-"let g:jedi#smart_auto_mappings = 1
-"
-"" Unite/ref and pydoc are more useful.
-"let g:jedi#documentation_command = '<Leader>_K'
-"let g:jedi#auto_close_doc = 1
-
-""-----------------------------------------------------------------------------
-"" vim cellmode
-""-----------------------------------------------------------------------------
-"let g:cellmode_use_tmux=1
-"let g:cellmode_tmux_sessionname=''
-"let g:cellmode_tmux_windowname=''
-"let g:cellmode_tmux_panenumber='1'
+" rst-tables
+nmap ;;c <Plug>(format-rst-table)
+nmap ;;f <Plug>(reflow-rst-table)
