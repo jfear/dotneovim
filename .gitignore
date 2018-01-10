@@ -1,2 +1,3 @@
-plugged/*
+dein
 .netrwhist
+.mypy_cache
