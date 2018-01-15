@@ -36,31 +36,35 @@ if dein#load_state('$HOME/.config/nvim/dein')
     \ 'on_i': 1})
 
   call dein#add('w0rp/ale',
-    \ {'on_ft': ['python', 'snakemake']})
+    \ {'on_ft': ['python', 'snakemake'],
+    \ 'on_i': 1})
 
   call dein#add('Vimjas/vim-python-pep8-indent',
-    \ {'on_ft': ['python', 'snakemake']})
+    \ {'on_ft': ['python', 'snakemake'],
+    \ 'on_i': 1})
 
   call dein#add('davidhalter/jedi-vim',
-    \ {'on_ft': ['python', 'snakemake']})
+    \ {'on_ft': ['python', 'snakemake'],
+    \ 'on_i': 1})
 
-  call dein#add('bfredl/nvim-ipy',
-    \ {'on_ft': ['python', 'snakemake']})
+   call dein#add('bfredl/nvim-ipy',
+     \ {'on_ft': ['python', 'snakemake'],
+     \  'on_cmd': 'IPython'})
 
   call dein#add('ccwang002/vim-snakemake',
     \ {'on_ft': ['snakemake']})
 
-  call dein#add('Shougo/echodoc.vim', {'on_ft': ['python', 'snakemake']})
+  call dein#add('Shougo/echodoc.vim', {'on_ft': ['python', 'snakemake'], 'on_i': 1})
 
   " R
-  call dein#add('jalvesaq/Nvim-R',
-    \ {'on_ft': ['r', 'rmd']})
+"  call dein#add('jalvesaq/Nvim-R',
+"    \ {'on_ft': ['r', 'rmd']})
 
   " others
   call dein#add('junegunn/seoul256.vim')
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('airblade/vim-gitgutter')
+  call dein#add('airblade/vim-gitgutter', {'on_i': 1})
   call dein#add('ntpeters/vim-better-whitespace', {'on_i': 1})
   call dein#add('triglav/vim-visual-increment', {'on_i': 1})
   call dein#add('jlesquembre/rst-tables.nvim',

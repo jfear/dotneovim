@@ -16,7 +16,7 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " Deoplete Jedi
-let g:deoplete#sources#jedi#server_timeout = 50
+let g:deoplete#sources#jedi#server_timeout = 500
 
 " Echodoc
 set noshowmode
