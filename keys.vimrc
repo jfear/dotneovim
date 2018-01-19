@@ -61,3 +61,9 @@ inoremap <F5> <C-R>=strftime("%m/%d/%Y")<CR>
 " add/remove comments on visual selection
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+" Git Settings
+nmap <Leader>hs <Plug>GitGutterStageHunk
+nmap <Leader>hu <Plug>GitGutterStageHunk
+nmap <Leader>ga :Gwrite<CR>
+nmap <Leader>gc :Gcommit<CR>
