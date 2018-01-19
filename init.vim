@@ -23,10 +23,10 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('Shougo/deol.nvim', {'on_cmd': 'Deol'})
 
   " scrooloose
-  call dein#add('scrooloose/nerdtree', {'on_cmd': 'NerdTreeToggle'})
+  call dein#add('scrooloose/nerdtree', {'on_cmd': ['NerdTreeToggle', 'NerdTree']})
 
   " tpope
-  call dein#add('tpope/vim-fugitive', {'on_i': 1})
+  call dein#add('tpope/vim-fugitive', {'on_cmd': ['Gwrite', 'Gcommit']})
   call dein#add('tpope/vim-surround', {'on_i': 1})
   call dein#add('tpope/vim-repeat', {'on_i': 1})
 
@@ -64,7 +64,7 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('junegunn/seoul256.vim')
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('airblade/vim-gitgutter', {'on_i': 1})
+  call dein#add('airblade/vim-gitgutter')
   call dein#add('ntpeters/vim-better-whitespace', {'on_i': 1})
   call dein#add('triglav/vim-visual-increment', {'on_i': 1})
   call dein#add('jlesquembre/rst-tables.nvim',
