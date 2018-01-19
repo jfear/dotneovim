@@ -96,3 +96,9 @@ au FileType markdown.python,snakemake.python,python map ,/ <Plug>(IPy-WordObjInf
 " rst-tables
 nmap ;;c <Plug>(format-rst-table)
 nmap ;;f <Plug>(reflow-rst-table)
+
+" Git
+aug gitgutter
+  au!
+  au BufRead * :GitGutter
+aug end

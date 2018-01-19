@@ -64,7 +64,7 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('junegunn/seoul256.vim')
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('airblade/vim-gitgutter')
+  call dein#add('airblade/vim-gitgutter', {'on_cmd': 'GitGutter'})
   call dein#add('ntpeters/vim-better-whitespace', {'on_i': 1})
   call dein#add('triglav/vim-visual-increment', {'on_i': 1})
   call dein#add('jlesquembre/rst-tables.nvim',
