@@ -51,6 +51,7 @@ au BufRead,BufNewfile Snakefile,*.snake,*.snakefile
   \ set softtabstop=4 |
   \ set shiftwidth=4 |
   \ set foldmethod=indent |
+  \ set colorcolumn=79 |
   \ let b:comment_leader = '# '
 
 " CSV and TSV
