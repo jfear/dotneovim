@@ -20,7 +20,7 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/deoplete.nvim', {'on_i': 1})
   call dein#add('Shougo/denite.nvim')
-  call dein#add('Shougo/deol.nvim', {'on_cmd': 'Deol'})
+"   call dein#add('Shougo/deol.nvim', {'on_cmd': 'Deol'})
 
   " scrooloose
   call dein#add('scrooloose/nerdtree', {'on_cmd': ['NerdTreeToggle', 'NerdTree']})
@@ -32,33 +32,35 @@ if dein#load_state('$HOME/.config/nvim/dein')
 
   " Python
   call dein#add('zchee/deoplete-jedi',
-    \ {'on_ft': ['python', 'snakemake'],
+    \ {'on_ft': ['python', 'snakemake.python'],
     \ 'on_i': 1})
 
   call dein#add('w0rp/ale',
-    \ {'on_ft': ['python', 'snakemake'],
+    \ {'on_ft': ['python', 'snakemake.python'],
     \ 'on_i': 1})
 
   call dein#add('Vimjas/vim-python-pep8-indent',
-    \ {'on_ft': ['python', 'snakemake'],
+    \ {'on_ft': ['python', 'snakemake.python'],
     \ 'on_i': 1})
 
   call dein#add('davidhalter/jedi-vim',
-    \ {'on_ft': ['python', 'snakemake'],
+    \ {'on_ft': ['python', 'snakemake.python'],
     \ 'on_i': 1})
 
    call dein#add('bfredl/nvim-ipy',
-     \ {'on_ft': ['python', 'snakemake'],
+     \ {'on_ft': ['python', 'snakemake.python'],
      \  'on_cmd': 'IPython'})
 
   call dein#add('ccwang002/vim-snakemake',
-    \ {'on_ft': ['snakemake']})
+    \ {'on_ft': ['snakemake.python']})
 
-  call dein#add('Shougo/echodoc.vim', {'on_ft': ['python', 'snakemake'], 'on_i': 1})
+  call dein#add('Shougo/echodoc.vim',
+    \ {'on_ft': ['python', 'snakemake.python'],
+    \ 'on_i': 1})
 
   " R
-  call dein#add('jalvesaq/Nvim-R',
-    \ {'on_ft': ['r', 'rmd']})
+   call dein#add('jalvesaq/Nvim-R',
+     \ {'on_ft': ['r', 'rmd']})
 
   " others
   call dein#add('junegunn/seoul256.vim')

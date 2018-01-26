@@ -3,7 +3,6 @@
 " -----------------------------------------------------------------------
 " Vim
 au FileType vim
-  \ set nospell |
   \ set smartindent |
   \ set expandtab |
   \ set tabstop=2 |
@@ -15,7 +14,6 @@ au FileType vim
 " Bash
 au FileType sh
   \ set number |
-  \ set nospell |
   \ set smartindent |
   \ set expandtab |
   \ set tabstop=2 |
@@ -25,11 +23,9 @@ au FileType sh
   \ let b:comment_leader = '# '
 
 " Python
-au BufRead,BufNewfile *.py
-  \ set ft=python |
+au FileType python
   \ set syntax=python |
   \ set number |
-  \ set nospell |
   \ set smartindent |
   \ set expandtab |
   \ set tabstop=4 |
@@ -44,7 +40,6 @@ au BufRead,BufNewfile Snakefile,*.snake,*.snakefile
   \ set ft=snakemake.python |
   \ set syntax=snakemake |
   \ set number |
-  \ set nospell |
   \ set smartindent |
   \ set expandtab |
   \ set tabstop=4 |
@@ -59,13 +54,11 @@ au BufRead,BufNewfile *.csv,*.tsv
   \ set ft=csv |
   \ set nonumber |
   \ set noexpandtab |
-  \ set nospell
 
 " Text
-au BufRead,BufNewfile *.txt,*.tex,*.md,*.rst
+au FileType text,plaintex,markdown,rst
   \ set lbr |
   \ set tw=80 |
-  \ set spell spelllang=en |
   \ set nonumber
 
 " YAML

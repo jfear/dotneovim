@@ -14,6 +14,8 @@ set mouse=a
 set wildmode=list:longest
 set number
 set relativenumber
+set spelllang=en_us
+set nospell
 
 " Change to the current directory of the current file
 au BufEnter * if expand('%p') !~ '://' | :lchdir %:p:h | endif
