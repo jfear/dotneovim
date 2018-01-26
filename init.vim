@@ -100,15 +100,3 @@ source $HOME/.config/nvim/general.vimrc
 source $HOME/.config/nvim/keys.vimrc
 source $HOME/.config/nvim/plugins.vimrc
 source $HOME/.config/nvim/files.vimrc
-
-autocmd BufRead,BufNewfile * call :denite#custom#var('file_rec', 'command',
-  \ ['find', '-L', ':directory',
-  \ '\(',
-  \ '-path', '*/.git/*', '-o',
-  \ '-path', '*/.snakemake/*', '-o',
-  \ '-path', '*/.cache/*', '-o',
-  \ '-path', '*/.ipynb_checkpoints/*', '-o',
-  \ '\)',
-  \ '-prune', '-o',
-  \ '-type', 'l', '-print', '-o',
-  \ '-type', 'f', '-print'])

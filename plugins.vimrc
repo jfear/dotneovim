@@ -19,6 +19,15 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 let g:deoplete#sources#jedi#server_timeout = 500
 
 " Denite
+call denite#custom#var('file_rec', 'command',
+  \ ['find', '-L', ':directory',
+  \ '-path', '*/.git/*', '-prune', '-o',
+  \ '-path', '*/.cache/*', '-prune', '-o',
+  \ '-path', '*/.snakemake/*', '-prune', '-o',
+  \ '-path', '*/.ipynb_checkpoints/*', '-prune', '-o',
+  \ '-type', 'l', '-print', '-o',
+  \ '-type', 'f', '-print'])
+
 noremap <silent> <C-p> :Denite file_rec<CR>
 
 " Echodoc
