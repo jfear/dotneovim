@@ -57,8 +57,8 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('Shougo/echodoc.vim', {'on_ft': ['python', 'snakemake'], 'on_i': 1})
 
   " R
-"  call dein#add('jalvesaq/Nvim-R',
-"    \ {'on_ft': ['r', 'rmd']})
+  call dein#add('jalvesaq/Nvim-R',
+    \ {'on_ft': ['r', 'rmd']})
 
   " others
   call dein#add('junegunn/seoul256.vim')
