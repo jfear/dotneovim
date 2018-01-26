@@ -19,7 +19,7 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/deoplete.nvim', {'on_i': 1})
-  call dein#add('Shougo/denite.nvim', {'on_cmd': 'Denite'})
+  call dein#add('Shougo/denite.nvim')
   call dein#add('Shougo/deol.nvim', {'on_cmd': 'Deol'})
 
   " scrooloose
@@ -100,3 +100,15 @@ source $HOME/.config/nvim/general.vimrc
 source $HOME/.config/nvim/keys.vimrc
 source $HOME/.config/nvim/plugins.vimrc
 source $HOME/.config/nvim/files.vimrc
+
+autocmd BufRead,BufNewfile * call :denite#custom#var('file_rec', 'command',
+  \ ['find', '-L', ':directory',
+  \ '\(',
+  \ '-path', '*/.git/*', '-o',
+  \ '-path', '*/.snakemake/*', '-o',
+  \ '-path', '*/.cache/*', '-o',
+  \ '-path', '*/.ipynb_checkpoints/*', '-o',
+  \ '\)',
+  \ '-prune', '-o',
+  \ '-type', 'l', '-print', '-o',
+  \ '-type', 'f', '-print'])

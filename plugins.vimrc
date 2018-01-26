@@ -18,6 +18,9 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 " Deoplete Jedi
 let g:deoplete#sources#jedi#server_timeout = 500
 
+" Denite
+noremap <silent> <C-p> :Denite file_rec<CR>
+
 " Echodoc
 set noshowmode
 let g:echodoc#enable_at_startup = 1
