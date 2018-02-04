@@ -115,3 +115,15 @@ aug gitgutter
   au!
   au BufRead * :GitGutter
 aug end
+
+" vimwiki
+let g:vimwiki_list = [{'path': '~/research-wiki/src',
+          \ 'syntax': 'markdown',
+          \ 'ext': '.vimwiki',
+          \ 'path_html': '~/research-wiki/html/',
+          \ 'custom_wiki2html': '~/research-wiki/tools/wiki2html.sh',
+          \ 'custom_wiki2html_args': '',
+          \ 'auto_export': 1,
+          \ 'auto_toc': 1}]
+
+au FileType vimwiki set ft=markdown
