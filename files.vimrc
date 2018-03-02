@@ -52,7 +52,6 @@ au BufRead,BufNewfile Snakefile,*.snake,*.snakefile
 " IPynb
 au BufRead,BufNewFile *.ipynb
       \ set ft=ipynb
-      \ set syntax=markdown
 
 " CSV and TSV
 au BufRead,BufNewfile *.csv,*.tsv
