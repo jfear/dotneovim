@@ -49,6 +49,11 @@ au BufRead,BufNewfile Snakefile,*.snake,*.snakefile
   \ set colorcolumn=79 |
   \ let b:comment_leader = '# '
 
+" IPynb
+au BufRead,BufNewFile *.ipynb
+      \ set ft=ipynb
+      \ set syntax=markdown
+
 " CSV and TSV
 au BufRead,BufNewfile *.csv,*.tsv
   \ set ft=csv |
