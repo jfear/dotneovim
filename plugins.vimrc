@@ -37,6 +37,7 @@ let g:echodoc#enable_at_startup = 1
 " Ale
 let g:ale_sign_column_always = 1
 let g:ale_python_mypy_options = '--ignore-missing-imports'
+let g:ale_python_flake8_options = '--max-line-length=120'
 let g:ale_linters = {
   \ 'python': ['flake8'],
 \}

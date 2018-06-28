@@ -32,7 +32,7 @@ au FileType python
   \ set softtabstop=4 |
   \ set shiftwidth=4 |
   \ set foldmethod=indent |
-  \ set colorcolumn=79 |
+  \ set colorcolumn=120 |
   \ let b:comment_leader = '# '
 
 " Snakemake
@@ -46,7 +46,7 @@ au BufRead,BufNewfile Snakefile,*.snake,*.snakefile
   \ set softtabstop=4 |
   \ set shiftwidth=4 |
   \ set foldmethod=indent |
-  \ set colorcolumn=79 |
+  \ set colorcolumn=120 |
   \ let b:comment_leader = '# '
 
 " IPynb
