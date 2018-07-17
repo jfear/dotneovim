@@ -76,6 +76,7 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('godlygeek/tabular', {'on_cmd': 'Tabularize'})
   call dein#add('vimwiki/vimwiki', {'on_i': 1})
   call dein#add('reedes/vim-pencil', {'on_ft': ['markdown', 'text', 'plaintext', 'rst']})
+  call dein#add('reedes/vim-colors-pencil')
 
 
 "Plug 'Rykka/riv.vim'

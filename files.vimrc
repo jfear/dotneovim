@@ -64,6 +64,8 @@ au FileType text,plaintex,markdown,rst
   \ set nonumber |
   \ set norelativenumber |
   \ set spell |
+  \ set background=light |
+  \ colorscheme pencil |
   \ call pencil#init()
 
 " YAML
