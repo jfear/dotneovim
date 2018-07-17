@@ -23,7 +23,7 @@ if dein#load_state('$HOME/.config/nvim/dein')
 "   call dein#add('Shougo/deol.nvim', {'on_cmd': 'Deol'})
 
   " scrooloose
-  call dein#add('scrooloose/nerdtree', {'on_cmd': ['NerdTreeToggle', 'NerdTree']})
+  call dein#add('scrooloose/nerdtree', {'on_i': 1})
 
   " tpope
   call dein#add('tpope/vim-fugitive', {'on_cmd': ['Gwrite', 'Gcommit']})
@@ -75,6 +75,8 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('chrisbra/csv.vim', {'on_ft': ['csv', 'tsv']})
   call dein#add('godlygeek/tabular', {'on_cmd': 'Tabularize'})
   call dein#add('vimwiki/vimwiki', {'on_i': 1})
+  call dein#add('reedes/vim-pencil', {'on_ft': ['markdown', 'text', 'plaintext', 'rst']})
+  call dein#add('reedes/vim-colors-pencil')
 
 
 "Plug 'Rykka/riv.vim'

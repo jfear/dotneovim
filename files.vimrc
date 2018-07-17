@@ -61,9 +61,10 @@ au BufRead,BufNewfile *.csv,*.tsv
 
 " Text
 au FileType text,plaintex,markdown,rst
-  \ set lbr |
-  \ set tw=80 |
-  \ set nonumber
+  \ set nonumber |
+  \ set norelativenumber |
+  \ set spell |
+  \ call pencil#init()
 
 " YAML
 au BufNewFile,BufRead *.yaml,*.yml
