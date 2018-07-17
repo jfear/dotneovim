@@ -70,6 +70,7 @@ au FileType text,plaintex,markdown,rst
   \ set background=light |
   \ colorscheme pencil |
   \ syn match markdownError "\w\@<=\w\@=" |
+  \ syn match Comment /\%^---\_.\{-}---$/ |
   \ call pencil#init()
 
 " YAML
