@@ -64,6 +64,9 @@ au FileType text,plaintex,markdown,rst
   \ set nonumber |
   \ set norelativenumber |
   \ set spell |
+  \ set expandtab |
+  \ set shiftwidth=2 |
+  \ set tabstop=2 |
   \ set background=light |
   \ colorscheme pencil |
   \ syn match markdownError "\w\@<=\w\@=" |
