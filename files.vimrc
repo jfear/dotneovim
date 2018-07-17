@@ -66,6 +66,7 @@ au FileType text,plaintex,markdown,rst
   \ set spell |
   \ set background=light |
   \ colorscheme pencil |
+  \ syn match markdownError "\w\@<=\w\@=" |
   \ call pencil#init()
 
 " YAML
