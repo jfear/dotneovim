@@ -132,3 +132,6 @@ au FileType vimwiki set ft=markdown
 " ipynb_vim
 let g:notedown_enable=1
 let g:notedown_code_match='all'
+
+" Pencil
+let g:pencil#textwidth=100
