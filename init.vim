@@ -51,11 +51,11 @@ if dein#load_state('$HOME/.config/nvim/dein')
      \ {'on_ft': ['python', 'snakemake.python'],
      \  'on_cmd': 'IPython'})
 
-  call dein#add('ccwang002/vim-snakemake',
-    \ {'on_ft': ['snakemake.python']})
+  call dein#add('ivan-krukov/vim-snakemake',
+    \ {'on_ft': ['snakemake.python', 'snakemake']})
 
   call dein#add('Shougo/echodoc.vim',
-    \ {'on_ft': ['python', 'snakemake.python'],
+    \ {'on_ft': ['python', 'snakemake.python', 'snakemake'],
     \ 'on_i': 1})
 
   " R
