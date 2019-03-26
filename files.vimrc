@@ -67,11 +67,6 @@ au FileType text,plaintex,markdown,rst
   \ set expandtab |
   \ set shiftwidth=2 |
   \ set tabstop=2 |
-  \ set background=light |
-  \ colorscheme pencil |
-  \ syn match markdownError "\w\@<=\w\@=" |
-  \ syn match Comment /\%^---\_.\{-}---$/ |
-  \ call pencil#init()
 
 " YAML
 au BufNewFile,BufRead *.yaml,*.yml

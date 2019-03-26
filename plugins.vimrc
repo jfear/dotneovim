@@ -132,9 +132,3 @@ au FileType vimwiki set ft=markdown
 " ipynb_vim
 let g:notedown_enable=1
 let g:notedown_code_match='all'
-
-" Pencil
-let g:pencil#textwidth=100
-let g:pencil_higher_contrast_ui=1
-let g:pencil_gutter_color=1
-let g:pencil_terminal_italics = 1

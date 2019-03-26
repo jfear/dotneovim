@@ -75,8 +75,6 @@ if dein#load_state('$HOME/.config/nvim/dein')
   call dein#add('chrisbra/csv.vim', {'on_ft': ['csv', 'tsv']})
   call dein#add('godlygeek/tabular')
   call dein#add('vimwiki/vimwiki', {'on_i': 1})
-  call dein#add('reedes/vim-pencil', {'on_ft': ['markdown', 'text', 'plaintext', 'rst']})
-  call dein#add('reedes/vim-colors-pencil')
   call dein#add('nelstrom/vim-markdown-folding', {'on_ft': 'markdown'})
   call dein#add('lvht/tagbar-markdown', {'on_ft' : 'markdown'})
 
